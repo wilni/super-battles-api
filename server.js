@@ -12,11 +12,13 @@ app.get('/:name', (req, res) => {
     let heroObj = {};
     axios.get(`https://superheroapi.com/api/${api_key}/search/${name}`)
     .then(response => {
+        console.log(response)
         let heroData = response.data.results[0];
         heroObj = {
             id: heroData.id,
             name: heroData.name,
-            powerstats: heroData.powerstats 
+            powerstats: heroData.powerstats,
+            image: heroData.image.url
         }
         console.log(heroObj);
         return res.send(heroObj);
